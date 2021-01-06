@@ -1,0 +1,25 @@
+{
+  "generalConfigFileAgeLastModifiedInDays": 10,
+  "generalConfigEnableFileMovementToBackupFolder": "yes",
+  "generalPathToBackupFile": "C:\\Users\\dell\\Documents\\daniel\\general-backup",
+
+  "services": [
+    "nip",
+    "visa",
+    "account-recon",
+    "master-card"
+  ],
+  "serviceConfig": [
+    {
+      "serviceName": "nip",
+      "rootPath": "C:\\Users\\dell\\Documents\\daniel\\e-books",
+      "excludedFolders": ["ebooks","scr","best"],
+      "excludedExtensions": [".jar",".bat"],
+      "excludedFileNames" : ["do-not-delete","delete-not"],
+      "fileAgeToBeDeleted": 120,
+      "enableRecursiveDepth" : "yes",
+      "enableFileMovementToBackupFolder": "yes",
+      "pathToBackUpFolder":"C:\\Users\\dell\\Documents\\daniel\\backup"
+    }
+  ]
+}
