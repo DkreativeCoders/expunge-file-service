@@ -1,8 +1,9 @@
 {
-  "generalConfigFileAgeLastModifiedInDays": 10,
-  "generalConfigEnableFileMovementToBackupFolder": true,
-  "generalPathToBackupFile": "C:\\Users\\dell\\Documents\\daniel\\general-backup",
-
+  "generalConfig": {
+    "fileAgeLastModifiedInDays": 10,
+    "enableFileMovementToBackupFolder": true,
+    "pathToBackupFile": "C:\\Users\\dell\\Documents\\daniel\\general-backup"
+  },
   "services": [
     "nip",
     "visa",
@@ -11,12 +12,12 @@
   ],
   "serviceConfigs": [
     {
-      "top": 1,
+      "top": "This would be neglected because its not a property of the struct",
       "serviceName": "nip",
       "rootPath": "C:\\Users\\dell\\Documents\\daniel\\e-books",
       "excludeFolders": ["ebooks","scr","best"],
       "excludeExtensions": [".jar",".bat"],
-      "excludeFileNames" : ["do-not-delete","delete-not"],
+      "excludeSpecificFileNames" : ["do-not-delete","delete-not"],
       "excludeFileNamesContaining" : ["tomcat","tomcat"],
       "fileAgeToBeDeleted": 120,
       "enableRecursiveDepth" : true,

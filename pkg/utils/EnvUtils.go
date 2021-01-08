@@ -4,17 +4,17 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 )
 
 func GetPathToFileCleanerJson() string{
-	path, err := os.Getwd()
+	workingDirectorypath, err := os.Getwd()
 	if err != nil {
 		log.Println(err)
 	}
-	fmt.Println("working directory", path)
-
+	fmt.Println("working directory", workingDirectorypath)
 	configPath := os.Getenv("CONFIG.PATH")
-	fullPathToFileCleanerJson := path + configPath
+	fullPathToFileCleanerJson := filepath.Join(workingDirectorypath, configPath)
 	fmt.Println("Full Path directory", fullPathToFileCleanerJson)
 	return fullPathToFileCleanerJson
 }

@@ -5,7 +5,7 @@ type ServiceConfig struct {
 	RootPath string
 	ExcludeFolders []string
 	ExcludeExtensions []string
-	ExcludeFileNames []string
+	ExcludeSpecificFileNames []string
 	ExcludeFileNamesContaining []string
 	FileAgeToBeDeleted int
 	EnableRecursiveDepth bool

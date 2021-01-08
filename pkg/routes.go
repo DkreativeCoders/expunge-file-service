@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"fmt"
+	"github.com/DkreativeCoders/expunge-file-service/pkg/service"
 	"github.com/joho/godotenv"
 )
 
@@ -15,7 +16,9 @@ func NewServer() () {
 
 
 	//pathToFileCleanerJson :=getPathToFileCleanerJson()
-	//fileJsonParser := service.NewFileJsonParser()
+	fileJsonParser := service.NewFileJsonParser()
+	fileExpunge := service.NewFileExpunge(fileJsonParser)
+	fileExpunge.ExecuteDeleteTask()
 	//_, _ = fileJsonParser.ParseFileCleanerJson(pathToFileCleanerJson)
 
 

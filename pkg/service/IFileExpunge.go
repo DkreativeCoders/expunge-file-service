@@ -1,6 +1,6 @@
 package service
 
 type IFileExpunge interface {
-	executeDeleteTask() ()
+	ExecuteDeleteTask() ()
 }
 
