@@ -1,7 +1,7 @@
 package service
 
-import "file-cleaner-service/pkg"
+import "github.com/DkreativeCoders/expunge-file-service/pkg/domain"
 
 type IFileJsonParse interface {
-	ParseFileCleanerJson() (*pkg.FileCleanerJsonConfig, error)
+	ParseFileCleanerJson(filePath string) (*domain.FileCleanerJsonConfig, error)
 }

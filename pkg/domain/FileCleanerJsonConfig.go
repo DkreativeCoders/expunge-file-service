@@ -1,9 +1,9 @@
-package pkg
+package domain
 
 type FileCleanerJsonConfig struct {
 	GeneralConfigFileAgeLastModifiedInDays        int
-	GeneralConfigEnableFileMovementToBackupFolder string
-	GeneralPathToBackupFile                       string `json:"age"`
+	GeneralConfigEnableFileMovementToBackupFolder bool
+	GeneralPathToBackupFile                       string
 	Services                                      []string
 	ServiceConfigs                                []ServiceConfig
 }
