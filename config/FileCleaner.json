@@ -17,7 +17,7 @@
       "rootPath": "C:\\Users\\dell\\Documents\\daniel",
       "excludeFolders": ["ebooks","scr","best"],
       "excludeExtensions": [".jar",".bat",".DS_Store",".pdf"],
-      "excludeSpecificFileNames" : ["do-not-delete","delete-not"],
+      "excludeSpecificFileNames" : ["do-not-delete","delete-not","intermediate code generation part 1"],
       "excludeFileNamesContaining" : ["tomcat","tomcat"],
       "fileAgeToBeDeleted": 120,
       "enableRecursiveDepth" : true,

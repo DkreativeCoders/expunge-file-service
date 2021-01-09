@@ -31,11 +31,14 @@ func (f FileExpunge) ExecuteDeleteTask() {
 	processFileUsingRecursiveDepth :=NewProcessFileUsingRecursiveDepth()
 	processFileUsingRecursiveDepth.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
 
-	processFileRemoveExcludedExtension :=NewProcessFileRemoveExcludedExtension()
+	processFileRemoveExcludedExtension :=NewProcessFileExcludedExtension()
 	processFileRemoveExcludedExtension.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
 
-	//fmt.Println("set of path",*fileProcessState)
+	processFileRemoveSpecificFileName:=NewProcessFileExcludeSpecificFileName()
+	processFileRemoveSpecificFileName.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
 
+
+	//fmt.Println("set of path",*fileProcessState)
 
 	//-Walk through the whole file path and get all the file paths needed if
 	//  ---"enableRecursiveDepth" : true,

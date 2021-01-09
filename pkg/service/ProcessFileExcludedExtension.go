@@ -3,34 +3,40 @@ package service
 import (
 	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
+	"github.com/DkreativeCoders/expunge-file-service/pkg/utils"
 	"path/filepath"
 )
 
-type ProcessFileRemoveSpecificFileName struct {
+type ProcessFileExcludedExtension struct {
+}
+
+func NewProcessFileExcludedExtension() *ProcessFileExcludedExtension {
+	return &ProcessFileExcludedExtension{}
 }
 
 
-func (p ProcessFileRemoveSpecificFileName) prepareFile(generalConfig domain.GeneralConfig,
+
+func (p ProcessFileExcludedExtension) prepareFile(generalConfig domain.GeneralConfig,
 	serviceConfig domain.ServiceConfig,
 	fileProcessState *domain.FileProcessState) {
 
 	mapOfExcludedExtensionToPaths := make(map[string]map[string] bool) //==> java Map<String, Set<String>>
-	excludeExtensionsAsSet := p.getExcludedExtensionsAsSet(serviceConfig.ExcludeExtensions)
+	excludeExtensionsAsSet := utils.GetListOfStringAsSet(serviceConfig.ExcludeExtensions)
 	p.setMapOfExcludedExtensions(fileProcessState, excludeExtensionsAsSet, mapOfExcludedExtensionToPaths)
 
 	for extensions, setOfFilePathOfFilePath := range mapOfExcludedExtensionToPaths {
 		for fileToBeDeleted, _ := range setOfFilePathOfFilePath {
 			delete(fileProcessState.SetOfFilesPath, fileToBeDeleted)    // Delete
-			fmt.Println("Removed file ", fileToBeDeleted, " for this ext =>> ",extensions, )
+			fmt.Println("Removed file ", fileToBeDeleted, " for this ext =>> ",extensions)
 		}
 	}
 
-	fmt.Println("After ProcessFileRemoveExcludedExtension")
+	fmt.Println("After ProcessFileExcludedExtension")
 	fmt.Println("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
 
 }
 
-func (p ProcessFileRemoveSpecificFileName) setMapOfExcludedExtensions(fileProcessState *domain.FileProcessState,
+func (p ProcessFileExcludedExtension) setMapOfExcludedExtensions(fileProcessState *domain.FileProcessState,
 	excludeExtensionsAsSet map[string]bool,
 	mapOfExcludedExtensionToPaths map[string]map[string]bool) {
 
@@ -49,16 +55,7 @@ func (p ProcessFileRemoveSpecificFileName) setMapOfExcludedExtensions(fileProces
 	fmt.Println(mapOfExcludedExtensionToPaths)
 }
 
-
-func (p ProcessFileRemoveSpecificFileName) getExcludedExtensionsAsSet(excludeExtensions []string) map[string]bool{
-	excludeExtensionsAsSet := make(map[string]bool)
-	for _, s := range excludeExtensions {
-		excludeExtensionsAsSet[s] = true
-	}
-	return excludeExtensionsAsSet
-}
-
-func (p ProcessFileRemoveSpecificFileName) excludedExtensionsContainsFilePath(excludeExtensionsAsSet map[string]bool, path string) bool{
+func (p ProcessFileExcludedExtension) excludedExtensionsContainsFilePath(excludeExtensionsAsSet map[string]bool, path string) bool{
 	if excludeExtensionsAsSet[filepath.Ext(path)]{
 		return true
 	}
