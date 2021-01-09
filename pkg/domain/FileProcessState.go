@@ -6,3 +6,7 @@ type FileProcessState struct {
 	MapOfExcludedFileNamesToPath map[string]map[string] bool //==> java Map<String, Set<String>>
 	MapOfExcludedFileNamesContainsToPath map[string]map[string] bool //==> java Map<String, Set<String>>
 }
+
+func NewFileProcessState() *FileProcessState {
+	return &FileProcessState{}
+}

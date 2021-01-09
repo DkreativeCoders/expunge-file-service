@@ -12,11 +12,11 @@
   ],
   "serviceConfigs": [
     {
-      "top": "This would be neglected because its not a property of the struct",
+      "top": "Tested to see if This top property would be neglected and it was neglected because its not a property of the struct",
       "serviceName": "nip",
-      "rootPath": "C:\\Users\\dell\\Documents\\daniel\\e-books",
+      "rootPath": "C:\\Users\\dell\\Documents\\daniel",
       "excludeFolders": ["ebooks","scr","best"],
-      "excludeExtensions": [".jar",".bat"],
+      "excludeExtensions": [".jar",".bat",".DS_Store",".pdf"],
       "excludeSpecificFileNames" : ["do-not-delete","delete-not"],
       "excludeFileNamesContaining" : ["tomcat","tomcat"],
       "fileAgeToBeDeleted": 120,

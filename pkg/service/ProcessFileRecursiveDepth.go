@@ -11,6 +11,10 @@ import (
 type ProcessFileUsingRecursiveDepth struct {
 }
 
+func NewProcessFileUsingRecursiveDepth() *ProcessFileUsingRecursiveDepth {
+	return &ProcessFileUsingRecursiveDepth{}
+}
+
 func (p ProcessFileUsingRecursiveDepth) prepareFile(generalConfig domain.GeneralConfig,
 	serviceConfig domain.ServiceConfig,
 	fileProcessState *domain.FileProcessState) {

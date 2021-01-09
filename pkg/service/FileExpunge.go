@@ -1,7 +1,7 @@
 package service
 
 import (
-	"fmt"
+	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/utils"
 	"log"
 )
@@ -22,7 +22,20 @@ func (f FileExpunge) ExecuteDeleteTask() {
 	if err != nil {
 		log.Println(err)
 	}
-	fmt.Println("fileCleanerJsonConfig serviceConfigs", fileCleanerJsonConfig.ServiceConfigs)
+	//fmt.Println("fileCleanerJsonConfig serviceConfigs", fileCleanerJsonConfig.ServiceConfigs)
+
+	fileProcessState :=domain.NewFileProcessState()
+
+	serViceConfig:= fileCleanerJsonConfig.ServiceConfigs[0]
+
+	processFileUsingRecursiveDepth :=NewProcessFileUsingRecursiveDepth()
+	processFileUsingRecursiveDepth.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+
+	processFileRemoveExcludedExtension :=NewProcessFileRemoveExcludedExtension()
+	processFileRemoveExcludedExtension.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+
+	//fmt.Println("set of path",*fileProcessState)
+
 
 	//-Walk through the whole file path and get all the file paths needed if
 	//  ---"enableRecursiveDepth" : true,
