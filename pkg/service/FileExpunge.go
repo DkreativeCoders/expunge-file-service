@@ -37,6 +37,8 @@ func (f FileExpunge) ExecuteDeleteTask() {
 	processFileRemoveSpecificFileName:=NewProcessFileExcludeSpecificFileName()
 	processFileRemoveSpecificFileName.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
 
+	processFileExcludeFileOfConfigAge :=NewProcessFileExcludeFileOfConfigAge()
+	processFileExcludeFileOfConfigAge.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
 
 	//fmt.Println("set of path",*fileProcessState)
 
