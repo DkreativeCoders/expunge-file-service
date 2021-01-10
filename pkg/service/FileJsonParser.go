@@ -2,6 +2,7 @@ package service
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
 	"io/ioutil"
 	"log"
@@ -27,8 +28,8 @@ func (f *FileJsonParser) ParseFileCleanerJson(filePath string) (*domain.FileClea
 		return nil,err
 	}
 
-	log.Print("Data read", fileCleanerJsonConfig)
-	log.Print(fileCleanerJsonConfig.ServiceConfigs)
+	fmt.Println("Data read", fileCleanerJsonConfig)
+	fmt.Println(fileCleanerJsonConfig.ServiceConfigs)
 
 	return fileCleanerJsonConfig, err
 }

@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/utils"
 	"log"
@@ -8,11 +9,13 @@ import (
 
 type FileExpunge struct {
 	fileJsonParser IFileJsonParse
+	factoryProcessFile FactoryProcessFile
 }
 
-func NewFileExpunge(fileJsonParser IFileJsonParse) IFileExpunge {
-	return &FileExpunge{fileJsonParser: fileJsonParser}
+func NewFileExpunge(fileJsonParser IFileJsonParse, factoryProcessFile FactoryProcessFile) *FileExpunge {
+	return &FileExpunge{fileJsonParser: fileJsonParser, factoryProcessFile: factoryProcessFile}
 }
+
 
 
 
@@ -24,33 +27,47 @@ func (f FileExpunge) ExecuteDeleteTask() {
 	}
 	//fmt.Println("fileCleanerJsonConfig serviceConfigs", fileCleanerJsonConfig.ServiceConfigs)
 
-	fileProcessState :=domain.NewFileProcessState()
-	fileProcessState.SetOfFilesPath = make(map[string]bool)
 
-	serViceConfig:= fileCleanerJsonConfig.ServiceConfigs[0]
+	for _, serViceConfig := range fileCleanerJsonConfig.ServiceConfigs {
 
-	processFileNonRecursive := NewProcessFileNonRecursive()
-	processFileNonRecursive.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+		fmt.Println(">>>> Starting Executing for ", serViceConfig.ServiceName)
 
-	processFileUsingRecursiveDepth :=NewProcessFileUsingRecursiveDepth()
-	processFileUsingRecursiveDepth.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+		fileProcessState :=domain.NewFileProcessState()
+		fileProcessState.SetOfFilesPath = make(map[string]bool)
 
-	processFileRemoveExcludedExtension :=NewProcessFileExcludedExtension()
-	processFileRemoveExcludedExtension.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+		for _, processFile := range f.factoryProcessFile.ProcessFile{
+			processFile.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+		}
+		fileProcessState=nil
+		fmt.Println(">>>> Done Executing for ", serViceConfig.ServiceName)
+		fmt.Println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 
-	processFileRemoveSpecificFileName:=NewProcessFileExcludeSpecificFileName()
-	processFileRemoveSpecificFileName.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+	}
 
-	processFileExcludeFileOfConfigAge :=NewProcessFileExcludeFileOfConfigAge()
-	processFileExcludeFileOfConfigAge.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+	//serViceConfig:= fileCleanerJsonConfig.ServiceConfigs[0]
 
-	processFileBackup := NewProcessFileBackup()
-	processFileBackup.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+	//processFileNonRecursive := NewProcessFileNonRecursive()
+	//processFileNonRecursive.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+	//
+	//processFileUsingRecursiveDepth :=NewProcessFileUsingRecursiveDepth()
+	//processFileUsingRecursiveDepth.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+	//
+	//processFileRemoveExcludedExtension :=NewProcessFileExcludedExtension()
+	//processFileRemoveExcludedExtension.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+	//
+	//processFileRemoveSpecificFileName:=NewProcessFileExcludeSpecificFileName()
+	//processFileRemoveSpecificFileName.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+	//
+	//processFileExcludeFileOfConfigAge :=NewProcessFileExcludeFileOfConfigAge()
+	//processFileExcludeFileOfConfigAge.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+	//
+	//processFileBackup := NewProcessFileBackup()
+	//processFileBackup.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+	//
+	//processFileEradicate :=NewProcessFileEradicate()
+	//processFileEradicate.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
 
-	processFileEradicate :=NewProcessFileEradicate()
-	processFileEradicate.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
-
-	fileProcessState=nil
+	//fileProcessState=nil
 
 	//fmt.Println("set of path",*fileProcessState)
 

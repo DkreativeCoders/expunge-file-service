@@ -17,7 +17,8 @@ func NewServer() () {
 
 	//pathToFileCleanerJson :=getPathToFileCleanerJson()
 	fileJsonParser := service.NewFileJsonParser()
-	fileExpunge := service.NewFileExpunge(fileJsonParser)
+	factoryProcessFile := service.NewFactoryProcessFile()
+	fileExpunge := service.NewFileExpunge(fileJsonParser,*factoryProcessFile)
 	fileExpunge.ExecuteDeleteTask()
 	//_, _ = fileJsonParser.ParseFileCleanerJson(pathToFileCleanerJson)
 
