@@ -29,25 +29,17 @@ func (p ProcessFileBackup) prepareFile(generalConfig domain.GeneralConfig,
 		enableFileMovementToBackupFolder=generalConfig.EnableFileMovementToBackupFolder
 		pathToBackupFile = generalConfig.PathToBackupFile
 	}else {
-		enableFileMovementToBackupFolder=generalConfig.EnableFileMovementToBackupFolder
-		pathToBackupFile = generalConfig.PathToBackupFile
+		enableFileMovementToBackupFolder=serviceConfig.EnableFileMovementToBackupFolder
+		pathToBackupFile = serviceConfig.PathToBackUpFolder
 	}
 
 
 	if enableFileMovementToBackupFolder{
 		p.performBackup(fileProcessState, pathToBackupFile)
-
+		fmt.Println("After ProcessFileBackup")
+		fmt.Println("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
 	}
 
-
-	//for fileToBeExcluded, _ := range setOfExcludedFilePathsDueToLastModifiedDate {
-	//	delete(fileProcessState.SetOfFilesPath, fileToBeExcluded)    // Delete
-	//	fmt.Println("Removed file ", fileToBeExcluded )
-	//}
-
-
-	fmt.Println("After ProcessFileBackup")
-	fmt.Println("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
 
 }
 

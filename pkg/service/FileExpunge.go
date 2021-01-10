@@ -25,8 +25,12 @@ func (f FileExpunge) ExecuteDeleteTask() {
 	//fmt.Println("fileCleanerJsonConfig serviceConfigs", fileCleanerJsonConfig.ServiceConfigs)
 
 	fileProcessState :=domain.NewFileProcessState()
+	fileProcessState.SetOfFilesPath = make(map[string]bool)
 
 	serViceConfig:= fileCleanerJsonConfig.ServiceConfigs[0]
+
+	processFileNonRecursive := NewProcessFileNonRecursive()
+	processFileNonRecursive.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
 
 	processFileUsingRecursiveDepth :=NewProcessFileUsingRecursiveDepth()
 	processFileUsingRecursiveDepth.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
@@ -42,6 +46,11 @@ func (f FileExpunge) ExecuteDeleteTask() {
 
 	processFileBackup := NewProcessFileBackup()
 	processFileBackup.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+
+	processFileEradicate :=NewProcessFileEradicate()
+	processFileEradicate.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+
+	fileProcessState=nil
 
 	//fmt.Println("set of path",*fileProcessState)
 

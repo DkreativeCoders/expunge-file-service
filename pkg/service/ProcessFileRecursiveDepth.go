@@ -21,7 +21,6 @@ func (p ProcessFileUsingRecursiveDepth) prepareFile(generalConfig domain.General
 
 	if serviceConfig.EnableRecursiveDepth{
 		//perform recursive check
-		setOfFilePath := make(map[string]bool)
 		setOfExcludedFolder := p.getExcludedFolderAsSet(serviceConfig.ExcludeFolders)
 
 		err := filepath.Walk(serviceConfig.RootPath,
@@ -36,7 +35,7 @@ func (p ProcessFileUsingRecursiveDepth) prepareFile(generalConfig domain.General
 				}
 
 				if !info.IsDir(){
-					setOfFilePath[path]=true
+					fileProcessState.SetOfFilesPath[path]=true
 				}
 				//fmt.Println(path, "====>", info.Size(), "date===>", info.ModTime())
 				return nil
@@ -44,7 +43,10 @@ func (p ProcessFileUsingRecursiveDepth) prepareFile(generalConfig domain.General
 		if err != nil {
 			log.Println(err)
 		}
-		fileProcessState.SetOfFilesPath=setOfFilePath
+
+		fmt.Println("After ProcessFileUsingRecursiveDepth")
+
+		//fileProcessState.SetOfFilesPath=setOfFilePath
 	}
 }
 func (p ProcessFileUsingRecursiveDepth) getExcludedFolderAsSet(excludeFolders []string) map[string]bool{
