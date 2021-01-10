@@ -7,6 +7,7 @@ type ServiceConfig struct {
 	ExcludeExtensions []string
 	ExcludeSpecificFileNames []string
 	ExcludeFileNamesContaining []string
+	UseGeneralConfig bool
 	FileAgeToBeDeleted int
 	EnableRecursiveDepth bool
 	EnableFileMovementToBackupFolder bool

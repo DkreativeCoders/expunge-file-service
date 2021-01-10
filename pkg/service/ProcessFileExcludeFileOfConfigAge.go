@@ -20,8 +20,15 @@ func (p ProcessFileExcludeFileOfConfigAge) prepareFile(generalConfig domain.Gene
 	fileProcessState *domain.FileProcessState) {
 
 	setOfExcludedFilePathsDueToLastModifiedDate := make(map[string]bool) //==> java Map<String, Set<String>>
+	var fileAgeToBeDeleted int
+	if serviceConfig.UseGeneralConfig {
+		fileAgeToBeDeleted =generalConfig.FileAgeLastModifiedInDays
+	}else {
+		fileAgeToBeDeleted =serviceConfig.FileAgeToBeDeleted
+	}
 
-	p.setMapOfExcludedExtensions(fileProcessState, serviceConfig.FileAgeToBeDeleted, setOfExcludedFilePathsDueToLastModifiedDate)
+
+	p.setMapOfExcludedExtensions(fileProcessState, fileAgeToBeDeleted, setOfExcludedFilePathsDueToLastModifiedDate)
 
 	for fileToBeExcluded, _ := range setOfExcludedFilePathsDueToLastModifiedDate {
 		delete(fileProcessState.SetOfFilesPath, fileToBeExcluded)    // Delete
