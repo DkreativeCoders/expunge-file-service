@@ -1,4 +1,4 @@
-package service
+package ProcessFile
 
 import (
 	"fmt"
@@ -8,17 +8,17 @@ import (
 	"path/filepath"
 )
 
-type ProcessFileBackup struct {
+type Backup struct {
 }
 
-func NewProcessFileBackup() *ProcessFileBackup {
-	return &ProcessFileBackup{}
+func NewProcessFileBackup() *Backup {
+	return &Backup{}
 }
 
 
 
 
-func (p ProcessFileBackup) prepareFile(generalConfig domain.GeneralConfig,
+func (p Backup) PrepareFile(generalConfig domain.GeneralConfig,
 	serviceConfig domain.ServiceConfig,
 	fileProcessState *domain.FileProcessState) {
 
@@ -43,7 +43,7 @@ func (p ProcessFileBackup) prepareFile(generalConfig domain.GeneralConfig,
 
 }
 
-func (p ProcessFileBackup) performBackup(fileProcessState *domain.FileProcessState, backupFolderPath string) {
+func (p Backup) performBackup(fileProcessState *domain.FileProcessState, backupFolderPath string) {
 
 	if _, err := os.Stat(backupFolderPath); os.IsNotExist(err) {
 		// path/to/whatever does not exist

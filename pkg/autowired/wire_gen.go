@@ -6,12 +6,12 @@
 package autowired
 
 import (
-	"github.com/DkreativeCoders/expunge-file-service/pkg/service"
+	"github.com/DkreativeCoders/expunge-file-service/pkg/service/ProcessFile"
 )
 
 // Injectors from wire.go:
 
-func AutoWireNewFactoryProcessFile() *service.FactoryProcessFile {
-	factoryProcessFile := service.NewFactoryProcessFile()
+func AutoWireNewFactoryProcessFile() *ProcessFile.FactoryProcessFile {
+	factoryProcessFile := ProcessFile.NewFactoryProcessFile()
 	return factoryProcessFile
 }

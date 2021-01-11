@@ -1,18 +1,20 @@
-package service
+package Expunge
 
 import (
 	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
+	"github.com/DkreativeCoders/expunge-file-service/pkg/service/JsonParser"
+	"github.com/DkreativeCoders/expunge-file-service/pkg/service/ProcessFile"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/utils"
 	"log"
 )
 
 type FileExpunge struct {
-	fileJsonParser IFileJsonParse
-	factoryProcessFile FactoryProcessFile
+	fileJsonParser     JsonParser.IFileJsonParse
+	factoryProcessFile ProcessFile.FactoryProcessFile
 }
 
-func NewFileExpunge(fileJsonParser IFileJsonParse, factoryProcessFile FactoryProcessFile) *FileExpunge {
+func NewFileExpunge(fileJsonParser JsonParser.IFileJsonParse, factoryProcessFile ProcessFile.FactoryProcessFile) IFileExpunge {
 	return &FileExpunge{fileJsonParser: fileJsonParser, factoryProcessFile: factoryProcessFile}
 }
 
@@ -23,20 +25,21 @@ func (f FileExpunge) ExecuteDeleteTask() {
 	pathToFileCleanerJson :=utils.GetPathToFileCleanerJson()
 	fileCleanerJsonConfig,err:= f.fileJsonParser.ParseFileCleanerJson(pathToFileCleanerJson)
 	if err != nil {
-		log.Println(err)
+		log.Fatalln(err,"problem with file path or file")
 	}
 	//fmt.Println("fileCleanerJsonConfig serviceConfigs", fileCleanerJsonConfig.ServiceConfigs)
 
 
 	for _, serViceConfig := range fileCleanerJsonConfig.ServiceConfigs {
 
-		fmt.Println(">>>> Starting Executing for ", serViceConfig.ServiceName)
+		fmt.Print(">>>> Starting Executing for ServiceName==> ", serViceConfig.ServiceName,
+		"and root path =>>>>",serViceConfig.RootPath)
 
 		fileProcessState :=domain.NewFileProcessState()
 		fileProcessState.SetOfFilesPath = make(map[string]bool)
 
 		for _, processFile := range f.factoryProcessFile.ProcessFile{
-			processFile.prepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
+			processFile.PrepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
 		}
 		fileProcessState=nil
 		fmt.Println(">>>> Done Executing for ", serViceConfig.ServiceName)

@@ -1,12 +1,12 @@
-package service
+package ProcessFile
 
 type FactoryProcessFile struct {
 	ProcessFile                                []IProcessFile
 }
 
 func NewFactoryProcessFile() *FactoryProcessFile {
-	processFile:=buildProcessFileFactory()
-	return &FactoryProcessFile{ProcessFile:processFile }
+	processFile:= buildProcessFileFactory()
+	return &FactoryProcessFile{ProcessFile: processFile }
 }
 
 

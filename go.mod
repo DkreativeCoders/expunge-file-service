@@ -7,4 +7,5 @@ require (
 	github.com/buger/jsonparser v1.1.0
 	github.com/google/wire v0.4.0
 	github.com/joho/godotenv v1.3.0
+	github.com/robfig/cron/v3 v3.0.0
 )

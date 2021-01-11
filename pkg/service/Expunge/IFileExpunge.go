@@ -1,4 +1,4 @@
-package service
+package Expunge
 
 type IFileExpunge interface {
 	ExecuteDeleteTask() ()

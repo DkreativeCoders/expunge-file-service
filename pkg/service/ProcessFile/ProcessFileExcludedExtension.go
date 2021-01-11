@@ -1,4 +1,4 @@
-package service
+package ProcessFile
 
 import (
 	"fmt"
@@ -16,7 +16,7 @@ func NewProcessFileExcludedExtension() *ProcessFileExcludedExtension {
 
 
 
-func (p ProcessFileExcludedExtension) prepareFile(generalConfig domain.GeneralConfig,
+func (p ProcessFileExcludedExtension) PrepareFile(generalConfig domain.GeneralConfig,
 	serviceConfig domain.ServiceConfig,
 	fileProcessState *domain.FileProcessState) {
 

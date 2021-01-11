@@ -1,4 +1,4 @@
-package service
+package ProcessFile
 
 import (
 	"fmt"
@@ -7,14 +7,14 @@ import (
 	"os"
 )
 
-type ProcessFileEradicate struct {
+type Eradicate struct {
 }
 
-func NewProcessFileEradicate() *ProcessFileEradicate {
-	return &ProcessFileEradicate{}
+func NewProcessFileEradicate() *Eradicate {
+	return &Eradicate{}
 }
 
-func (p ProcessFileEradicate) prepareFile(generalConfig domain.GeneralConfig,
+func (p Eradicate) PrepareFile(generalConfig domain.GeneralConfig,
 	serviceConfig domain.ServiceConfig,
 	fileProcessState *domain.FileProcessState) {
 
@@ -33,7 +33,7 @@ func (p ProcessFileEradicate) prepareFile(generalConfig domain.GeneralConfig,
 
 }
 
-func (p ProcessFileEradicate) deleteFile(fileProcessState *domain.FileProcessState) {
+func (p Eradicate) deleteFile(fileProcessState *domain.FileProcessState) {
 
 	for systemFilePath := range fileProcessState.SetOfFilesPath {
 		if _, err := os.Stat(systemFilePath); os.IsNotExist(err) {

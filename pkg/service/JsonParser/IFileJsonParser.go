@@ -1,4 +1,4 @@
-package service
+package JsonParser
 
 import "github.com/DkreativeCoders/expunge-file-service/pkg/domain"
 

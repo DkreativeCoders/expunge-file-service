@@ -1,4 +1,4 @@
-package service
+package ProcessFile
 
 import (
 	"fmt"
@@ -8,14 +8,14 @@ import (
 	"path/filepath"
 )
 
-type ProcessFileUsingRecursiveDepth struct {
+type UsingRecursiveDepth struct {
 }
 
-func NewProcessFileUsingRecursiveDepth() *ProcessFileUsingRecursiveDepth {
-	return &ProcessFileUsingRecursiveDepth{}
+func NewProcessFileUsingRecursiveDepth() *UsingRecursiveDepth {
+	return &UsingRecursiveDepth{}
 }
 
-func (p ProcessFileUsingRecursiveDepth) prepareFile(generalConfig domain.GeneralConfig,
+func (p UsingRecursiveDepth) PrepareFile(generalConfig domain.GeneralConfig,
 	serviceConfig domain.ServiceConfig,
 	fileProcessState *domain.FileProcessState) {
 
@@ -49,7 +49,7 @@ func (p ProcessFileUsingRecursiveDepth) prepareFile(generalConfig domain.General
 		//fileProcessState.SetOfFilesPath=setOfFilePath
 	}
 }
-func (p ProcessFileUsingRecursiveDepth) getExcludedFolderAsSet(excludeFolders []string) map[string]bool{
+func (p UsingRecursiveDepth) getExcludedFolderAsSet(excludeFolders []string) map[string]bool{
 	excludedFolderAsSet := make(map[string]bool)
 	for _, s := range excludeFolders {
 		excludedFolderAsSet[s] = true

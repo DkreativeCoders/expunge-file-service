@@ -1,4 +1,4 @@
-package service
+package JsonParser
 
 import (
 	"encoding/json"

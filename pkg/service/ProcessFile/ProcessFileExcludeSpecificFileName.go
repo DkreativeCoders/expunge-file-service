@@ -1,4 +1,4 @@
-package service
+package ProcessFile
 
 import (
 	"fmt"
@@ -8,14 +8,14 @@ import (
 	"strings"
 )
 
-type ProcessFileExcludeSpecificFileName struct {
+type ExcludeSpecificFileName struct {
 }
 
-func NewProcessFileExcludeSpecificFileName() *ProcessFileExcludeSpecificFileName {
-	return &ProcessFileExcludeSpecificFileName{}
+func NewProcessFileExcludeSpecificFileName() *ExcludeSpecificFileName {
+	return &ExcludeSpecificFileName{}
 }
 
-func (p ProcessFileExcludeSpecificFileName) prepareFile(generalConfig domain.GeneralConfig,
+func (p ExcludeSpecificFileName) PrepareFile(generalConfig domain.GeneralConfig,
 	serviceConfig domain.ServiceConfig,
 	fileProcessState *domain.FileProcessState) {
 
@@ -37,7 +37,7 @@ func (p ProcessFileExcludeSpecificFileName) prepareFile(generalConfig domain.Gen
 
 }
 
-func (p ProcessFileExcludeSpecificFileName) setMapOfExcludedSpecificFileName(fileProcessState *domain.FileProcessState,
+func (p ExcludeSpecificFileName) setMapOfExcludedSpecificFileName(fileProcessState *domain.FileProcessState,
 	excludeSpecificFileNameAsSet map[string]bool,
 	mapOfSpecificFileNameToPaths map[string]map[string]bool) {
 
@@ -58,7 +58,7 @@ func (p ProcessFileExcludeSpecificFileName) setMapOfExcludedSpecificFileName(fil
 	fmt.Println(mapOfSpecificFileNameToPaths)
 }
 
-func (p ProcessFileExcludeSpecificFileName) excludedSpecificFileNameContainsFileName(
+func (p ExcludeSpecificFileName) excludedSpecificFileNameContainsFileName(
 	excludeSpecificFileNameAsSet map[string]bool,
 	name string) bool{
 

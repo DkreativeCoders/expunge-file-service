@@ -1,4 +1,4 @@
-package service
+package ProcessFile
 
 import (
 	"fmt"
@@ -7,15 +7,15 @@ import (
 	"time"
 )
 
-type ProcessFileExcludeFileOfConfigAge struct {
+type ExcludeFileOfConfigAge struct {
 }
 
-func NewProcessFileExcludeFileOfConfigAge() *ProcessFileExcludeFileOfConfigAge {
-	return &ProcessFileExcludeFileOfConfigAge{}
+func NewProcessFileExcludeFileOfConfigAge() *ExcludeFileOfConfigAge {
+	return &ExcludeFileOfConfigAge{}
 }
 
 
-func (p ProcessFileExcludeFileOfConfigAge) prepareFile(generalConfig domain.GeneralConfig,
+func (p ExcludeFileOfConfigAge) PrepareFile(generalConfig domain.GeneralConfig,
 	serviceConfig domain.ServiceConfig,
 	fileProcessState *domain.FileProcessState) {
 
@@ -41,7 +41,7 @@ func (p ProcessFileExcludeFileOfConfigAge) prepareFile(generalConfig domain.Gene
 
 }
 
-func (p ProcessFileExcludeFileOfConfigAge) setMapOfExcludedExtensions(fileProcessState *domain.FileProcessState,
+func (p ExcludeFileOfConfigAge) setMapOfExcludedExtensions(fileProcessState *domain.FileProcessState,
 	configuredFileAgeTobeDeleted int,
 	setOfExcludedFilePathsDueToLastModifiedDate map[string]bool) {
 
@@ -55,7 +55,7 @@ func (p ProcessFileExcludeFileOfConfigAge) setMapOfExcludedExtensions(fileProces
 	fmt.Println(setOfExcludedFilePathsDueToLastModifiedDate)
 }
 
-func (p ProcessFileExcludeFileOfConfigAge) fileLastModifiedDateIsLessThanConfig(
+func (p ExcludeFileOfConfigAge) fileLastModifiedDateIsLessThanConfig(
 	configuredFileAgeTobeDeleted int,
 	path string) bool{
 	fileInfo, err := os.Stat(path)

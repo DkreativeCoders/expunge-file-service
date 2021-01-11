@@ -1,4 +1,4 @@
-package service
+package ProcessFile
 
 import (
 	"fmt"
@@ -7,15 +7,15 @@ import (
 	"path/filepath"
 )
 
-type ProcessFileNonRecursive struct {
+type NonRecursive struct {
 }
 
-func NewProcessFileNonRecursive() *ProcessFileNonRecursive {
-	return &ProcessFileNonRecursive{}
+func NewProcessFileNonRecursive() *NonRecursive {
+	return &NonRecursive{}
 }
 
 
-func (p ProcessFileNonRecursive) prepareFile(generalConfig domain.GeneralConfig,
+func (p NonRecursive) PrepareFile(generalConfig domain.GeneralConfig,
 	serviceConfig domain.ServiceConfig,
 	fileProcessState *domain.FileProcessState) {
 
@@ -45,7 +45,7 @@ func (p ProcessFileNonRecursive) prepareFile(generalConfig domain.GeneralConfig,
 
 	}
 }
-func (p ProcessFileNonRecursive) getExcludedFolderAsSet(excludeFolders []string) map[string]bool{
+func (p NonRecursive) getExcludedFolderAsSet(excludeFolders []string) map[string]bool{
 	excludedFolderAsSet := make(map[string]bool)
 	for _, s := range excludeFolders {
 		excludedFolderAsSet[s] = true
