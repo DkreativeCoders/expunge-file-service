@@ -16,7 +16,7 @@ A service that automates deleting of files in a specified manner
 6. To do a one time clean up hit the end <code>http://localhost:8600/api/v1/flush</code>
 
 
-# Setting up env 
+# Setting up env file
 
 ```go
 
