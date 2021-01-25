@@ -57,6 +57,8 @@ set CRON.INTERVAL to the cron format
    
 2. set up service Configs
 
+This contains an array of setup that would be processed in the order of insertion
+
      ```json
            "serviceConfigs": [
             {
@@ -72,6 +74,19 @@ set CRON.INTERVAL to the cron format
             "enableFileMovementToBackupFolder": false,
             "pathToBackUpFolder":"C:\\Users\\dell\\Documents\\daniel\\backupForEbillService"
             },
+            {
+            "serviceName": "another service",
+            "rootPath": "path\to\backup\folder",
+            "excludeFolders": ["ebooks","scr","best"],
+            "excludeExtensions": [".jar",".bat",".DS_Store",".pdf"],
+            "excludeSpecificFileNames" : ["do-not-delete","delete-not","intermediate code generation part 1"],
+            "excludeFileNamesContaining" : ["tomcat","tomcat"],
+            "enableRecursiveDepth" : false,         
+            "useGeneralConfig": false,
+            "fileAgeLastModifiedInDays": 5,
+            "enableFileMovementToBackupFolder": false,
+            "pathToBackUpFolder":"C:\\Users\\dell\\Documents\\daniel\\backupForEbillService"
+            }
             
         ] 
      ```
