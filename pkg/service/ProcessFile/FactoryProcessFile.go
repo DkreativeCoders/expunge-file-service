@@ -17,6 +17,7 @@ func buildProcessFileFactory() []IProcessFile {
 	processFile = append(processFile, NewProcessFileUsingRecursiveDepth())
 	processFile = append(processFile, NewProcessFileExcludedExtension())
 	processFile = append(processFile, NewProcessFileExcludeSpecificFileName())
+	processFile = append(processFile,NewProcessFileExcludeFileNameContaining())
 	processFile = append(processFile, NewProcessFileExcludeFileOfConfigAge())
 	processFile = append(processFile, NewProcessFileBackup())
 	processFile = append(processFile, NewProcessFileEradicate())

@@ -53,18 +53,19 @@ func NewServer() *http.Server {
 	cronFactory := RunnableCrons.NewCronFactory(fileExpunge)
 
 	c := cron.New()
-	for _, cronService := range cronFactory.CronService {
-		_, _ = c.AddFunc(cronService.GetCronTime(), func() { cronService.Execute() })
 
-		// Added time to see output
+	enableCronJob := os.Getenv("ENABLE.CRONJOB")
+
+	if enableCronJob=="true"{
+		for _, cronService := range cronFactory.CronService {
+			_, _ = c.AddFunc(cronService.GetCronTime(), func() { cronService.Execute() })
+			// Added time to see output
+		}
 	}
 
+
 	router := mux.NewRouter()
-
-
 	controller.NewExpungeController(router, fileExpunge)
-
-
 
 	//_, _ = c.AddFunc("@every 0h0m10s", func() { fmt.Println("Every second") })
 	//_, _ = c.AddFunc("* * * * *", func() { fmt.Println("Every second") })
@@ -74,7 +75,7 @@ func NewServer() *http.Server {
 		port = "8600" //localhost
 	}
 
-	glg.Log(port)
+	glg.Log("service started on port: ",port)
 	srv := &http.Server{Handler: router, Addr: ":" + port}
 
 	err := http.ListenAndServe(":"+port, router) //Launch the app, visit localhost:8000/api

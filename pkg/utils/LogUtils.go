@@ -11,7 +11,7 @@ func SetFileLogLogger() {
 	workingDirectoryPath, err := os.Getwd()
 	if err != nil {
 	}
-	logPath := os.Getenv("CONFIG.LOG")
+	logPath := os.Getenv("LOG.NAME")
 	fullPathToLogFile := filepath.Join(workingDirectoryPath,"logs", logPath)
 
 	_, err = os.Stat(fullPathToLogFile)

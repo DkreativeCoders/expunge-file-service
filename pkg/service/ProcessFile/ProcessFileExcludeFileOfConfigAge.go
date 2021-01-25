@@ -24,7 +24,7 @@ func (p ExcludeFileOfConfigAge) PrepareFile(generalConfig domain.GeneralConfig,
 	if serviceConfig.UseGeneralConfig {
 		fileAgeToBeDeleted =generalConfig.FileAgeLastModifiedInDays
 	}else {
-		fileAgeToBeDeleted =serviceConfig.FileAgeToBeDeleted
+		fileAgeToBeDeleted =serviceConfig.FileAgeLastModifiedInDays
 	}
 
 

@@ -6,7 +6,19 @@
   },
 
   "serviceConfigs": [
-    
+    {
+      "serviceName": "ebills",
+      "rootPath": "C:\\Users\\dell\\Documents\\daniel\\general-backup",
+      "excludeFolders": ["ebooks","scr","best"],
+      "excludeExtensions": [".jar",".bat",".DS_Store",".pdf"],
+      "excludeSpecificFileNames" : ["do-not-delete","delete-not","intermediate code generation part 1"],
+      "excludeFileNamesContaining" : ["tomcat","tomcat"],
+      "useGeneralConfig": false,
+      "fileAgeToBeDeleted": 5,
+      "enableRecursiveDepth" : false,
+      "enableFileMovementToBackupFolder": false,
+      "pathToBackUpFolder":"C:\\Users\\dell\\Documents\\daniel\\backupForEbillService"
+    },
     {
       "top": "Tested to see if This top property would be neglected and it was neglected because its not a property of the struct",
       "serviceName": "nip",

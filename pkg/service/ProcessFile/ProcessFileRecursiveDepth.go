@@ -1,7 +1,6 @@
 package ProcessFile
 
 import (
-	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
 	"github.com/kpango/glg"
 	"log"
@@ -31,7 +30,7 @@ func (p UsingRecursiveDepth) PrepareFile(generalConfig domain.GeneralConfig,
 				}
 
 				if info.IsDir() && setOfExcludedFolder[info.Name()]{
-					fmt.Print("found and skipping excludedFolder==>",info.Name())
+					glg.Log("found and skipping excludedFolder==>",info.Name())
 					return filepath.SkipDir
 				}
 
