@@ -57,8 +57,6 @@ set CRON.INTERVAL to the cron format
    
 2. set up service Configs
 
-This contains an array of setup that would be processed in the order of insertion
-
      ```json
            "serviceConfigs": [
             {
@@ -90,7 +88,9 @@ This contains an array of setup that would be processed in the order of insertio
             
         ] 
      ```
-   
+
+This contains an array of setup that would be processed in the order of insertion
+
 
 **serviceName** refers to the id 
    
