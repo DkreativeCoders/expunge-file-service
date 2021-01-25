@@ -16,11 +16,14 @@
 // swagger:meta
 package main
 
-import "github.com/DkreativeCoders/expunge-file-service/pkg"
+import (
+	"github.com/DkreativeCoders/expunge-file-service/pkg"
+	"github.com/kpango/glg"
+)
 
 func main() {
 
-	pkg.NewServer()
+	srv :=pkg.NewServer()
 	//defer func() {
 	//	fmt.Print("Closing Db")
 	//	err := db.Close()
@@ -29,6 +32,6 @@ func main() {
 	//	}
 	//}()
 
-	//log.Println("Server listening on", srv.Addr)
-	//log.Fatal(srv.ListenAndServe())
+	glg.Info("Server listening on", srv.Addr)
+	glg.Error(srv.ListenAndServe())
 }

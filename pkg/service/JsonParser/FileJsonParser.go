@@ -2,8 +2,8 @@ package JsonParser
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
+	"github.com/kpango/glg"
 	"io/ioutil"
 	"log"
 )
@@ -28,8 +28,8 @@ func (f *FileJsonParser) ParseFileCleanerJson(filePath string) (*domain.FileClea
 		return nil,err
 	}
 
-	fmt.Println("Data read", fileCleanerJsonConfig)
-	fmt.Println(fileCleanerJsonConfig.ServiceConfigs)
+	glg.Info("Data read", fileCleanerJsonConfig)
+	glg.Info(fileCleanerJsonConfig.ServiceConfigs)
 
 	return fileCleanerJsonConfig, err
 }

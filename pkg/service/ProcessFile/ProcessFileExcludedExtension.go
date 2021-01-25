@@ -1,9 +1,9 @@
 package ProcessFile
 
 import (
-	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/utils"
+	"github.com/kpango/glg"
 	"path/filepath"
 )
 
@@ -27,12 +27,12 @@ func (p ProcessFileExcludedExtension) PrepareFile(generalConfig domain.GeneralCo
 	for extensions, setOfFilePathOfFilePath := range mapOfExcludedExtensionToPaths {
 		for fileToBeDeleted, _ := range setOfFilePathOfFilePath {
 			delete(fileProcessState.SetOfFilesPath, fileToBeDeleted)    // Delete
-			fmt.Println("Removed file ", fileToBeDeleted, " for this ext =>> ",extensions)
+			glg.Log("Removed file ", fileToBeDeleted, " for this ext =>> ",extensions)
 		}
 	}
 
-	fmt.Println("After ProcessFileExcludedExtension")
-	fmt.Println("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
+	glg.Log("After ProcessFileExcludedExtension")
+	glg.Log("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
 
 }
 
@@ -52,7 +52,7 @@ func (p ProcessFileExcludedExtension) setMapOfExcludedExtensions(fileProcessStat
 		}
 
 	}
-	fmt.Println(mapOfExcludedExtensionToPaths)
+	glg.Log(mapOfExcludedExtensionToPaths)
 }
 
 func (p ProcessFileExcludedExtension) excludedExtensionsContainsFilePath(excludeExtensionsAsSet map[string]bool, path string) bool{

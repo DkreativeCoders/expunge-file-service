@@ -1,8 +1,8 @@
 package ProcessFile
 
 import (
-	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
+	"github.com/kpango/glg"
 	"os"
 	"time"
 )
@@ -32,12 +32,12 @@ func (p ExcludeFileOfConfigAge) PrepareFile(generalConfig domain.GeneralConfig,
 
 	for fileToBeExcluded, _ := range setOfExcludedFilePathsDueToLastModifiedDate {
 		delete(fileProcessState.SetOfFilesPath, fileToBeExcluded)    // Delete
-		fmt.Println("Removed file ", fileToBeExcluded )
+		glg.Log("Removed file ", fileToBeExcluded )
 	}
 
 
-	fmt.Println("After ProcessFileExcludeFileOfConfigAge")
-	fmt.Println("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
+	glg.Log("After ProcessFileExcludeFileOfConfigAge")
+	glg.Log("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
 
 }
 
@@ -52,7 +52,7 @@ func (p ExcludeFileOfConfigAge) setMapOfExcludedExtensions(fileProcessState *dom
 		}
 
 	}
-	fmt.Println(setOfExcludedFilePathsDueToLastModifiedDate)
+	glg.Log(setOfExcludedFilePathsDueToLastModifiedDate)
 }
 
 func (p ExcludeFileOfConfigAge) fileLastModifiedDateIsLessThanConfig(
@@ -60,22 +60,22 @@ func (p ExcludeFileOfConfigAge) fileLastModifiedDateIsLessThanConfig(
 	path string) bool{
 	fileInfo, err := os.Stat(path)
 	if err != nil {
-		fmt.Println(err)
+		glg.Log(err)
 	}
 
 	var configuredFileDurationTobeDeleted time.Duration
 	configuredFileAgeTobeDeleted = int(time.Duration(configuredFileAgeTobeDeleted))
 	configDate := time.Now().Add(configuredFileDurationTobeDeleted * 24 * time.Hour)
 
-	//fmt.Println(today)
-	//fmt.Println(today.Format("02-Jan-2006"))
-	fmt.Println(fileInfo.ModTime())
+	//glg.Log(today)
+	//glg.Log(today.Format("02-Jan-2006"))
+	glg.Log(fileInfo.ModTime())
 	differenceInDays := int(configDate.Sub(fileInfo.ModTime()).Hours() / 24 )//
 	if differenceInDays < configuredFileAgeTobeDeleted{
 		return  true
 	}
 
-	fmt.Println("file age with respect to configTime ==>",differenceInDays,"file last modifiedTime >>",
+	glg.Log("file age with respect to configTime ==>",differenceInDays,"file last modifiedTime >>",
 		fileInfo.ModTime().Format("02-Jan-2006"))
 
 

@@ -2,7 +2,7 @@ package RunnableCrons
 
 import (
 	"github.com/DkreativeCoders/expunge-file-service/pkg/service/Expunge"
-	"log"
+	"github.com/kpango/glg"
 	"os"
 )
 
@@ -13,9 +13,9 @@ type CronFileExpungeService struct {
 func (c CronFileExpungeService) Execute() {
 	enableCronInterval := os.Getenv("ENABLE.CRONJOB")
 	if enableCronInterval == "true"{
-		log.Println("About Running CronFileExpungeService")
+		glg.Log("About Running CronFileExpungeService")
 		c.fileExpunge.ExecuteDeleteTask()
-		log.Println("Done Running CronFileExpungeService")
+		glg.Log("Done Running CronFileExpungeService")
 	}
 }
 

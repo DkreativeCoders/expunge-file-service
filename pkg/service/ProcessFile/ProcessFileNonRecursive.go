@@ -3,6 +3,7 @@ package ProcessFile
 import (
 	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
+	"github.com/kpango/glg"
 	"os"
 	"path/filepath"
 )
@@ -24,7 +25,7 @@ func (p NonRecursive) PrepareFile(generalConfig domain.GeneralConfig,
 		setOfExcludedFolder := p.getExcludedFolderAsSet(serviceConfig.ExcludeFolders)
 		f, err := os.Open(serviceConfig.RootPath)
 		if err != nil {
-			fmt.Println(err)
+			glg.Log(err)
 		}
 		files, err := f.Readdir(-1)
 		_ = f.Close()
@@ -40,8 +41,8 @@ func (p NonRecursive) PrepareFile(generalConfig domain.GeneralConfig,
 		}
 		//fileProcessState.SetOfFilesPath=setOfFilePath
 
-		fmt.Println("After ProcessFileNonRecursive")
-		fmt.Println("setOfFilePath", fileProcessState.SetOfFilesPath)
+		glg.Log("After ProcessFileNonRecursive")
+		glg.Log("setOfFilePath", fileProcessState.SetOfFilesPath)
 
 	}
 }

@@ -1,8 +1,8 @@
 package ProcessFile
 
 import (
-	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
+	"github.com/kpango/glg"
 	"log"
 	"os"
 	"path/filepath"
@@ -36,8 +36,8 @@ func (p Backup) PrepareFile(generalConfig domain.GeneralConfig,
 
 	if enableFileMovementToBackupFolder{
 		p.performBackup(fileProcessState, pathToBackupFile)
-		fmt.Println("After ProcessFileBackup")
-		fmt.Println("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
+		glg.Log("After ProcessFileBackup")
+		glg.Log("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
 	}
 
 
@@ -47,8 +47,8 @@ func (p Backup) performBackup(fileProcessState *domain.FileProcessState, backupF
 
 	if _, err := os.Stat(backupFolderPath); os.IsNotExist(err) {
 		// path/to/whatever does not exist
-		fmt.Println("Backup Directory does not exist")
-		fmt.Println("Creating Backup directory")
+		glg.Log("Backup Directory does not exist")
+		glg.Log("Creating Backup directory")
 		err = os.Mkdir(backupFolderPath, 0755)
 		if err != nil {
 			log.Fatal(err)

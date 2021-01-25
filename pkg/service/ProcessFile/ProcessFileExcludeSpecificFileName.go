@@ -1,9 +1,9 @@
 package ProcessFile
 
 import (
-	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/utils"
+	"github.com/kpango/glg"
 	"os"
 	"strings"
 )
@@ -21,19 +21,19 @@ func (p ExcludeSpecificFileName) PrepareFile(generalConfig domain.GeneralConfig,
 
 	mapOfSpecificFileNameToPaths := make(map[string]map[string] bool) //==> java Map<String, Set<String>>
 	excludeSpecificFileNameAsSet := utils.GetListOfStringAsSet(serviceConfig.ExcludeSpecificFileNames)
-	//fmt.Println("excludeSpecificFileNameAsSet ", excludeSpecificFileNameAsSet)
+	//glg.Log("excludeSpecificFileNameAsSet ", excludeSpecificFileNameAsSet)
 
 	p.setMapOfExcludedSpecificFileName(fileProcessState, excludeSpecificFileNameAsSet, mapOfSpecificFileNameToPaths)
 
 	for fileName, setOfFilePath := range mapOfSpecificFileNameToPaths {
 		for fileToBeDeleted, _ := range setOfFilePath {
 			delete(fileProcessState.SetOfFilesPath, fileToBeDeleted)    // Delete
-			fmt.Println("Removed file ", fileToBeDeleted, " for this fileName =>> ",fileName)
+			glg.Log("Removed file ", fileToBeDeleted, " for this fileName =>> ",fileName)
 		}
 	}
 
-	fmt.Println("After ProcessFileExcludeSpecificFileName")
-	fmt.Println("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
+	glg.Log("After ProcessFileExcludeSpecificFileName")
+	glg.Log("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
 
 }
 
@@ -55,7 +55,7 @@ func (p ExcludeSpecificFileName) setMapOfExcludedSpecificFileName(fileProcessSta
 		}
 
 	}
-	fmt.Println(mapOfSpecificFileNameToPaths)
+	glg.Log(mapOfSpecificFileNameToPaths)
 }
 
 func (p ExcludeSpecificFileName) excludedSpecificFileNameContainsFileName(

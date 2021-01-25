@@ -1,9 +1,8 @@
 package ProcessFile
 
 import (
-	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
-	"log"
+	"github.com/kpango/glg"
 	"os"
 )
 
@@ -27,8 +26,8 @@ func (p Eradicate) PrepareFile(generalConfig domain.GeneralConfig,
 
 	if !enableFileMovementToBackupFolder {
 		p.deleteFile(fileProcessState)
-		fmt.Println("After ProcessFileEradicate")
-		fmt.Println("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
+		glg.Log("After ProcessFileEradicate")
+		glg.Log("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
 	}
 
 }
@@ -38,15 +37,15 @@ func (p Eradicate) deleteFile(fileProcessState *domain.FileProcessState) {
 	for systemFilePath := range fileProcessState.SetOfFilesPath {
 		if _, err := os.Stat(systemFilePath); os.IsNotExist(err) {
 			// path/to/whatever does not exist
-			fmt.Println(systemFilePath, "File does not exist")
+			glg.Log(systemFilePath, "File does not exist")
 			continue
 		}
-		fmt.Println("Deleting file...", systemFilePath)
+		glg.Log("Deleting file...", systemFilePath)
 		err := os.Remove(systemFilePath)
-		fmt.Println("Deleted file", systemFilePath)
+		glg.Log("Deleted file", systemFilePath)
 
 		if err != nil {
-			log.Fatal(err)
+			glg.Error(err)
 		}
 
 	}

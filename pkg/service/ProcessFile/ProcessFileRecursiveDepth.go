@@ -3,6 +3,7 @@ package ProcessFile
 import (
 	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
+	"github.com/kpango/glg"
 	"log"
 	"os"
 	"path/filepath"
@@ -37,14 +38,14 @@ func (p UsingRecursiveDepth) PrepareFile(generalConfig domain.GeneralConfig,
 				if !info.IsDir(){
 					fileProcessState.SetOfFilesPath[path]=true
 				}
-				//fmt.Println(path, "====>", info.Size(), "date===>", info.ModTime())
+				//glg.Log(path, "====>", info.Size(), "date===>", info.ModTime())
 				return nil
 			})
 		if err != nil {
 			log.Println(err)
 		}
 
-		fmt.Println("After ProcessFileUsingRecursiveDepth")
+		glg.Log("After ProcessFileUsingRecursiveDepth")
 
 		//fileProcessState.SetOfFilesPath=setOfFilePath
 	}

@@ -1,11 +1,11 @@
 package Expunge
 
 import (
-	"fmt"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/domain"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/service/JsonParser"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/service/ProcessFile"
 	"github.com/DkreativeCoders/expunge-file-service/pkg/utils"
+	"github.com/kpango/glg"
 	"log"
 )
 
@@ -32,7 +32,7 @@ func (f FileExpunge) ExecuteDeleteTask() {
 
 	for _, serViceConfig := range fileCleanerJsonConfig.ServiceConfigs {
 
-		fmt.Print(">>>> Starting Executing for ServiceName==> ", serViceConfig.ServiceName,
+		glg.Info(">>>> Starting Executing for ServiceName==> ", serViceConfig.ServiceName,
 		"and root path =>>>>",serViceConfig.RootPath)
 
 		fileProcessState :=domain.NewFileProcessState()
@@ -42,8 +42,8 @@ func (f FileExpunge) ExecuteDeleteTask() {
 			processFile.PrepareFile(fileCleanerJsonConfig.GeneralConfig,serViceConfig,fileProcessState)
 		}
 		fileProcessState=nil
-		fmt.Println(">>>> Done Executing for ", serViceConfig.ServiceName)
-		fmt.Println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+		glg.Info(">>>> Done Executing for ", serViceConfig.ServiceName)
+		glg.Info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 
 	}
 

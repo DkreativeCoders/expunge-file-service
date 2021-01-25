@@ -1,0 +1,28 @@
+2021-01-24 16:56:00	[INFO]:	info
+2021-01-24 16:56:00	[INFO]:	info : formatted
+2021-01-24 16:56:00	[LOG]:	log
+2021-01-24 16:56:00	[LOG]:	info : formatted
+2021-01-24 16:56:00	[DEBG]:	debug
+2021-01-24 16:56:00	[DEBG]:	info : formatted
+2021-01-24 16:56:00	[WARN]:	warn
+2021-01-24 16:56:00	[WARN]:	info : formatted
+2021-01-24 16:56:00	[ERR]:	error
+2021-01-24 16:56:00	[ERR]:	info : formatted
+2021-01-24 16:56:00	[OK]:	ok
+2021-01-24 16:56:00	[OK]:	info : formatted
+2021-01-24 16:56:00	[FAIL]:	fail
+2021-01-24 16:56:00	[FAIL]:	info : formatted
+2021-01-24 17:08:30	[INFO]:	info
+2021-01-24 17:08:30	[INFO]:	info : formatted
+2021-01-24 17:08:30	[LOG]:	log
+2021-01-24 17:08:30	[LOG]:	info : formatted
+2021-01-24 17:08:30	[DEBG]:	debug
+2021-01-24 17:08:30	[DEBG]:	info : formatted
+2021-01-24 17:08:30	[WARN]:	warn
+2021-01-24 17:08:30	[WARN]:	info : formatted
+2021-01-24 17:08:30	[ERR]:	error
+2021-01-24 17:08:30	[ERR]:	info : formatted
+2021-01-24 17:08:30	[OK]:	ok
+2021-01-24 17:08:30	[OK]:	info : formatted
+2021-01-24 17:08:30	[FAIL]:	fail
+2021-01-24 17:08:30	[FAIL]:	info : formatted
