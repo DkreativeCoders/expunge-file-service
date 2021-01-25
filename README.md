@@ -2,15 +2,18 @@
 A service that automates deleting of files in a specified manner 
 
 # Getting Started
-1. Create a config folder in the root directory of the project
-   
-2. Set up your env file in the root directory of the project
-   
-3. Replicate the FileCleaner.Json file and configure
+1. [Download the exe file here](https://drive.google.com/file/d/16Vhs0YDAsZcdehs96upr8Ca7vOoavTt7/view?usp=sharing
+   )
 
-4. start the service by running the service name on cmd
+2. Create a config folder in the root directory of the project
+   
+3. Set up your env file in the root directory of the project
+   
+4. Replicate the FileCleaner.Json file and configure
 
-5. To do a one time clean up hit the end <code>http://localhost:8600/api/v1/flush</code>
+5. start the service by running the service name on cmd
+
+6. To do a one time clean up hit the end <code>http://localhost:8600/api/v1/flush</code>
 
 
 # Setting up env 
