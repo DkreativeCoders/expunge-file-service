@@ -55,14 +55,21 @@ func NewServer() *http.Server {
 	c := cron.New()
 
 	enableCronJob := os.Getenv("ENABLE.CRONJOB")
+	glg.Log("enableCronJob ===> ", enableCronJob)
+
 
 	if enableCronJob=="true"{
+		glg.Log("Scheduling cron jobs")
+
 		for _, cronService := range cronFactory.CronService {
 			_, _ = c.AddFunc(cronService.GetCronTime(), func() { cronService.Execute() })
 			// Added time to see output
 		}
 	}
 
+	c.Start()
+	//time.Sleep(20 * time.Minute)
+	//c.Stop()
 
 	router := mux.NewRouter()
 	controller.NewExpungeController(router, fileExpunge)
@@ -82,10 +89,6 @@ func NewServer() *http.Server {
 	if err != nil {
 		fmt.Print(err)
 	}
-	c.Start()
-	//time.Sleep(20 * time.Minute)
-	//c.Stop()
-
 	return srv
 
 }
