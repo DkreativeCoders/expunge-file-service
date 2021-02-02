@@ -2,7 +2,7 @@
 A service that automates deleting of files in a specified manner 
 
 # Getting Started
-1. [Download the exe file here](https://drive.google.com/file/d/1CRrB562xT-ZEb-2-1s5qvP5UiwgCsoVp/view?usp=sharing)
+1. [Download the exe file here](https://drive.google.com/file/d/1IzMy6ImKp6Va9MaoorfqtaHKSgTqf63j/view?usp=sharing)
 
 2. Create a config folder in the root directory of the project
    
