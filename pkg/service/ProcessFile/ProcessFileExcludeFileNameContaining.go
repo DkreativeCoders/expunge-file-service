@@ -32,7 +32,7 @@ func (p ExcludeFileNameContaining) PrepareFile(generalConfig domain.GeneralConfi
 		}
 	}
 
-	glg.Log("After ProcessFileExcludeSpecificFileName")
+	glg.Log("After ProcessFileExcludeFileNameContaining")
 	glg.Log("SetOfFilesPathToBeDeleted ", fileProcessState.SetOfFilesPath)
 
 }

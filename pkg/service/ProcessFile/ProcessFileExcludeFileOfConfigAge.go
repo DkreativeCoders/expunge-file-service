@@ -64,19 +64,22 @@ func (p ExcludeFileOfConfigAge) fileLastModifiedDateIsLessThanConfig(
 	}
 
 	var configuredFileDurationTobeDeleted time.Duration
-	configuredFileAgeTobeDeleted = int(time.Duration(configuredFileAgeTobeDeleted))
-	configDate := time.Now().Add(configuredFileDurationTobeDeleted * 24 * time.Hour)
+	configuredFileDurationTobeDeleted = time.Duration(configuredFileAgeTobeDeleted)
+	configDate := time.Now().Add(-configuredFileDurationTobeDeleted * 24 * time.Hour)
 
-	//glg.Log(today)
+	glg.Log(configDate.Format("02-Jan-2006"))
 	//glg.Log(today.Format("02-Jan-2006"))
 	glg.Log(fileInfo.ModTime())
 	differenceInDays := int(configDate.Sub(fileInfo.ModTime()).Hours() / 24 )//
-	if differenceInDays < configuredFileAgeTobeDeleted{
+	if differenceInDays <= 0 {
+		glg.Log("file age with respect to configTime ==>",differenceInDays,"file last modifiedTime >>",
+			fileInfo.ModTime().Format("02-Jan-2006"))
+		glg.Log(fileInfo.Name(),"is not older than configured day==>",configuredFileAgeTobeDeleted)
 		return  true
 	}
 
-	glg.Log("file age with respect to configTime ==>",differenceInDays,"file last modifiedTime >>",
-		fileInfo.ModTime().Format("02-Jan-2006"))
+	//glg.Log("file age with respect to configTime ==>",differenceInDays,"file last modifiedTime >>",
+	//	fileInfo.ModTime().Format("02-Jan-2006"))
 
 
 	return false
